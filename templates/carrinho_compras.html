@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrinho_compras.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='logo_ecológica.png') }}">
+    <script src="{{ url_for('static', filename='js/carrinho_compras.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Carrinho</title>
+</head>
+<body>
+    <div id="loading">
+        <img src="static/loading_ecológica.png" id="img_loading">
+        <div id="background_loading"></div>
+    </div>
+    <form id="form" method="post">
+        {{ form.hidden_tag() }}
+        <input style="visibility: hidden; width: 0px; height: 0px; position: absolute;" value="{{ sacola }}" name="itens">
+        <div id="img_mobile" class="frase">
+            <img src="{{ url_for('static', filename='logo_ecológica.png') }}" class="logo_frase">
+            Faz bem para você,<br>faz bem para o mundo.
+        </div>
+        <div id="bloco_esquerda">
+            <img src="static/imagem_sacola_vazia.png" id="img_sacola_vazia">
+            <div id="lista_itens">
+                {% if itens %}
+                    {% for item_chave, item_conteudo in itens.items() %}
+                        <div class="item_lista_compras" id="item_lista_{{ loop.index0 }}">
+                            <div class="item_desc_img"><img src="static/{{ item_conteudo.img }}.png" class="img_lista_compras">
+                                <div class="desc_item">
+                                    <span class="nome_item">{{ item_chave }}</span>
+                                    <span class="tamanho_item">Tamanho {{ item_conteudo.tamanho }}</span>
+                                </div>
+                            </div>
+                            <div class="quantidade_do_produto_lista_compras_com_titulo{{ item_conteudo.quantidade_unica }}">Quantidade
+                                <div class="quantidade_do_produto_lista_compras">
+                                    <button class="quantidade_do_produto_btn_mais" onclick="modificar_quantidade({{ loop.index0 }}, 1, {{ item_conteudo.estoque }})">+</button>
+                                    <textarea  class="quantidade_do_produto_display_qtd" id="lista_qtd_{{ loop.index0 }}">1</textarea>
+                                    <button class="quantidade_do_produto_btn_menos" onclick="modificar_quantidade({{ loop.index0 }}, -1, {{ item_conteudo.estoque }})">-</button>
+                                </div>
+                                <span class="center_text" id="qtd_maximo_lista_{{ loop.index0 }}" style="visibility: hidden">Máximo</span>
+                            </div>
+                            <div class="parte_final_desc_item">
+                                <span class="valor_produto_lista_compras">
+                                    <span class="valor_produto_lista_compras_desc">valor</span>
+                                    R$ {{ item_conteudo.valor }}
+                                </span>
+                                <div class="excluir_item_lista" onclick="excluir_item({{ loop.index0 }})">
+                                    <i class="fa-solid fa-xmark fa xproduto"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div id="black-space"></div>
+            <div id="frete">
+                <span id="titulo_frete">Entrega</span>
+                <div id="inputs_info_frete">
+                    <div id="div_input_endereco" class="div_input_frete">
+                        <label id="label_input_endereco" class="label_frete">Rua</label>
+                        <input id="input_endereco" class="input_frete" placeholder="Rua, Número" name="endereço">
+                    </div>
+                    <div id="div_input_telefone" class="div_input_frete">
+                        <label id="label_input_telefone" class="label_frete">Telefone de contato <span id="input_telefone_erro">*</span></label>
+                        <input id="input_telefone" class="input_frete" placeholder="(00) 00000-0000" name="telefone" required>
+                    </div>
+                </div>
+                <span id="disclaimer_endereço">*Caso não inserir o endereço entraremos em contato por meio do telefone fornecido.</span>
+            </div>
+        </div>
+        <div id="bloco_direita">
+            <div id="area_valor">
+                <div id="valor_da_compra">
+                    <div id="soma_produtos">
+                        <div id="soma_produtos_nomes">
+                            {% if itens %}
+                            {% for item_chave, item_conteudo in itens.items() %}
+                            <span class="soma_produtos_texto" id="soma_produtos_nome_{{ loop.index0 }}">{{ item_chave }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div id="soma_produtos_valores">
+                            {% if itens %}
+                            {% for item_chave, item_conteudo in itens.items() %}
+                            <span class="soma_produtos_texto" id="soma_produtos_valor_{{ loop.index0 }}">R$ {{ item_conteudo.valor }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="total_compra">
+                        <span class="total_compra_texto">Total</span>
+                        <span class="total_compra_texto" id="valor_da_compra_texto">
+                            {{ soma_total }}
+                        </span>
+                    </div>
+                </div>
+                <div style="width: 100%" id="div_btns_compra">
+                    <button class="btn" id="btn_comprar" formaction="{{ url_for('encomenda_realizada') }}" type="submit">Encomendar</button>
+                    <button class="btn" id="btn_continuar_comprando" type="button" onclick="redirecionar_para_index()">Continuar comprando</button>
+                </div>
+            </div>
+            <span class="frase" id="frase_desktop">
+                <img src="{{ url_for('static', filename='logo_ecológica.png') }}" class="logo_frase">
+                Faz bem para você,<br>faz bem para o mundo.
+            </span>
+        </div>
+    </form>
+
+</body>
+</html>

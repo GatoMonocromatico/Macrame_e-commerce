@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='logo_ecológica.png') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+    var csrf_token = "{{ csrf_token() }}";
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
+        }
+    });
+    </script>
+    <title>Início</title>
+</head>
+<body>
+<form method="post" action="{{ url_for('carrinho') }}" id="corpo_form">
+    {{ form.hidden_tag() }}
+    <div id="cabeçalho">
+        <div id="container_logomarca">
+            <img draggable="false" id="logo_cabeçalho" src="{{ url_for('static', filename='logo_ecológica.png') }}">
+            Ecológica
+        </div>
+
+        <h1>Moda sustentável, faz bem para o mundo, faz bem para você.</h1>
+        <button type="submit" id="sacola_compras_btn">
+            <input name="sacola" id="sacola_input" placeholder="">
+            <img draggable="false" id="icone_sacola_compras" src="{{ url_for('static', filename='simbolo_sacola_compras.png') }}">
+            <span id="numero_de_itens_sacola"></span>
+        </button>
+    </div>
+
+    <div id="loading">
+        <img src="static/loading_ecológica.png" id="img_loading">
+        <div id="background_loading"></div>
+    </div>
+
+</form>
+</body>
+</html>

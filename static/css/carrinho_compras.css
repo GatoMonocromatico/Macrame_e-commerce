@@ -1,0 +1,690 @@
+:root {
+    --ton-base: #fff3e3;
+    --ton-amarelado: #fffae3;
+    --ton-escurecido: #f6ebdb;
+    --ton-escuro: #331f06;
+    --sombra-fraca: #d4cabd;
+    --sombra-forte: #b3aa9f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    transition: all 100ms;
+}
+
+form {
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    justify-content:space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+  
+::-webkit-scrollbar-track {
+    background: antiquewhite;
+    border-radius: 0 10px 10px 0;
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: rgb(231, 208, 166);
+    border-radius: 10px;
+}
+
+#img_loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    width: 50vw;
+    max-width: 400px;
+    animation: gira 2s linear infinite;
+    z-index: 11;
+}
+  
+  @keyframes gira {
+    from {
+      transform: rotate(0deg)
+    }
+    to {
+      transform: rotate(360deg)
+    }
+}
+
+#background_loading {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background: radial-gradient(white, rgb(226, 209, 185));
+}
+
+body {
+    overflow: hidden;
+    background-color: #fff3e3;
+}
+
+#bloco_esquerda {
+    display: inline-flex;
+    flex-direction: column;
+    width: 55vw;
+    min-width: 500px;
+    height: 90vh;
+}
+
+#lista_itens {
+    width: 100%;
+    height: 65vh;
+    background-color: antiquewhite;
+    border-radius: 1vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#img_sacola_vazia {
+    position: absolute;
+    visibility: hidden;
+    width: 55vw;
+    min-width: 500px;
+    height: 90vh;
+    border-radius: 1vw;
+}
+
+.item_lista_compras {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1vw;
+    margin-left: 1vw;
+}
+
+.parte_final_desc_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item_desc_img {
+    display: flex;
+    height: 13vh;
+    flex-direction: row;
+
+}
+
+.img_lista_compras {
+    height: 13vh;
+    width: auto;
+    box-shadow: 0 0 10px -7px black;
+}
+
+.desc_item {
+    height: 13vh;
+    width: 100px;
+    display: inline-block;
+    font-family: 'Montserrat', Courier, monospace;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.nome_item {
+    display: block;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: "Arsenal SC", sans-serif;
+}
+
+.quantidade_do_produto_lista_compras_com_titulo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9vw;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quantidade_do_produto_lista_compras {
+    display: flex;
+    flex-direction: row;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+.quantidade_do_produto_btn_mais {
+    height: 1.75vw;
+    width: 1.75vw;
+    border: none;
+    border-radius: 0.3vw 0 0 0.3vw;
+    background-color: wheat;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.25vw;
+    font-weight: bolder;
+
+}
+
+.quantidade_do_produto_btn_mais:hover {
+    background-color: rgb(249, 230, 194);
+}
+
+.quantidade_do_produto_btn_menos {
+    height: 1.75vw;
+    width: 1.75vw;
+    border: none;
+    border-radius: 0 0.3vw 0.3vw 0;
+    background-color: wheat;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.25vw;
+    font-weight: bolder;
+}
+
+.quantidade_do_produto_btn_menos:hover {
+    background-color: rgb(249, 230, 194);
+}
+
+.quantidade_do_produto_display_qtd {
+    line-height: 1.75vw;
+    height: 1.75vw;
+    width: 2.2vw;
+    resize: none;
+    text-align: center;
+    border: none;
+    background-color: #fff3e3;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.25vw;
+}
+
+.quantidade_unica {
+    visibility: hidden;
+}
+
+/* .quantidade_maxima_quantificador_lista {
+    visibility: hidden;
+} */
+
+.valor_produto_lista_compras {
+    font-size: 16px;
+    font-family: 'Montserrat', Courier, monospace;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.valor_produto_lista_compras_desc {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.excluir_item_lista {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: wheat;
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 100px;
+    border: 1px solid red;
+}
+
+.excluir_item_lista:hover {
+    background-color: rgb(249, 230, 194);
+    border-color: rgb(255, 70, 70);
+}
+
+.excluir_item_lista:hover .xproduto {
+    color: rgb(255, 70, 70);
+}
+
+.xproduto {
+    font-size: 20px;
+    color: red;
+}
+
+#frete {
+    height: 20vh;
+    width: 100%;
+    background-color: antiquewhite;
+    margin-top: 5vh;
+    border-radius: 1vw;
+}
+
+#titulo_frete {
+    font-family: 'Montserrat', Courier, monospace;
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgb(241, 216, 170);
+    text-shadow: 0 0 25px #fff3e3;
+    margin-left: 1vw;
+    display: block;
+}
+
+#inputs_info_frete {
+    height: calc(20vh - 2.185vw);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.div_input_frete {
+    margin-bottom: 2vh;
+}
+
+.label_frete {
+    display: block;
+    color: black;
+    font-size: 18px;
+    font-family: 'Montserrat', Courier, monospace;
+    transition: all 250ms;
+}
+
+.input_frete {
+    border-radius: 10px;
+    font-size: 22px;
+    padding: 10px;
+    width: 200px;
+    border: 1px solid rgb(235, 210, 164);
+    color: rgb(235, 210, 164);
+    background-color: #fff3e3;
+    outline: none;
+}
+
+#input_telefone_erro {
+    visibility: hidden;
+    font-weight: bolder;
+    color: red;
+    font-size: 1.5vw;
+    transition: all 250ms;
+}
+
+::-webkit-input-placeholder {
+    color: rgb(250, 225, 180);
+}
+
+#disclaimer_endereço {
+    font-family: 'Montserrat', Courier, monospace;
+    font-size: 12px;
+}
+
+#bloco_direita {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 90vh;
+    width: 20vw;
+    min-width: 300px;
+}
+
+#area_valor {
+    height: 70vh;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#valor_da_compra {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 46.5vh;
+    background-color: antiquewhite;
+    border-radius: 1vw 1vw 0vw 0vw;
+}
+
+#soma_produtos {
+    width: 100%;
+    height:36.5vh;
+    display: flex;
+    flex-direction: row;
+}
+
+#soma_produtos_nomes {
+    width: 65%;
+    height:36.5vh;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+#soma_produtos_valores {
+    width: 35%;
+    height:36.5vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.soma_produtos_texto {
+    display: block;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    margin-top: 0.25vw;
+    margin-left: 1vw;
+}
+
+.soma_produtos_texto:nth-child(1) {
+    margin-top: 10px;
+}
+
+#total_compra {
+    width: 100%;
+    height: 10vh;
+    background-color: wheat;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.total_compra_texto {
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 44px;
+}
+
+.btn {
+    width: 90%;
+    border-radius: 500px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -0.1vw;
+    padding: 0.5vw;
+    font-family: "Arsenal SC", sans-serif;
+}
+
+#btn_comprar {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border: 0.25vw solid rgb(241, 216, 170);
+    color: rgb(241, 216, 170);
+    background-color: #fff3e3;
+    font-weight: bolder;
+    box-shadow: 0px 0px 25px -25px black;
+    transition: all 250ms;
+    font-size: 30px;
+}
+
+#btn_comprar:hover {
+    color: white;
+    background-color: rgb(241, 216, 170);
+}
+
+#btn_continuar_comprando {
+    border: 0.1vw solid black;
+    color: black;
+    background-color: antiquewhite;
+    transition: all 100ms;
+    font-size: 22px;
+}
+
+#btn_continuar_comprando:hover {
+    background-color: rgb(255, 240, 221);
+    color: rgb(37, 37, 37);
+    border-color: rgb(37, 37, 37);
+}
+
+.logo_frase {
+    width: auto;
+    height: 14vh;
+}
+
+#img_mobile {
+    width: 0px;
+    height: 0px;
+    visibility: hidden;
+}
+
+#frase_desktop {
+    flex-direction: column;
+}
+
+#img_mobile {
+    flex-direction: row;
+}
+
+.frase {
+    height: 20vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.center_text {
+    text-align: center;
+}
+
+#div_btns_compra {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@keyframes piscar {
+    0% {
+        color: black;
+    }
+    16.5% {
+        color: red;
+    }
+    33% {
+        color: white;
+    }
+    49.5% {
+        color: red;
+    }
+    66% {
+        color: white;
+    }
+    to {
+        color: red;
+    }
+}
+
+@media screen and (max-width: 801px) {
+    #img_mobile {
+        visibility: visible;
+        width: auto;
+        height: auto;
+    }
+
+    body {
+        overflow-y: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #frete {
+        position: relative;
+        margin-top: 0px;
+        border-radius: 0 0 10px 10px;
+        height: 170px;
+    }
+
+    #disclaimer_endereço { 
+        font-size: 10px;
+    }
+
+    #inputs_info_frete {
+        margin-top: 20px;
+        height: fit-content;
+    }
+
+    #lista_itens {
+        height: 400px;
+    }
+
+    #div_btns_compra {
+        display: block;
+    }
+
+    #area_valor {
+        flex-direction: row;
+    }
+
+    #bloco_direita {
+        position: absolute;
+        width: 95vw;
+        max-width: 500px;
+        min-width: 0px;  
+        height: 200px;
+        margin-top: 0px;
+        top: 400px;
+        box-shadow: 0px 15px 0 0 #faebd7;
+    }
+
+    #bloco_direita * {
+        min-height: 0px;
+        min-width: 0px;  
+    }
+
+    #soma_produtos {
+        height: 140px;
+    }
+
+    #valor_da_compra {
+        height: 195px;
+        box-shadow: 7px 0 antiquewhite, 8px 0 #331f06;
+        border-radius: 0;
+        z-index: 1;
+        margin-left: 5px;
+    }
+
+    #soma_produtos_nomes {
+        height: 140px;
+    }
+
+    #soma_produtos_valores {
+        height: 140px;
+    }
+
+    #total_compra {
+        height: 60px;
+        border-radius: 1000px;
+        border: 1px solid white;
+    }
+
+    .total_compra_texto {
+        font-size: 34px;
+    }
+
+    #bloco_esquerda {
+        width: 95vw;
+        max-width: 500px;
+        min-width: 0px;
+        height: fit-content;
+        background-color: #faebd7;
+        border-radius: 10px;
+    }
+    
+    #black-space {
+        height: 235px;
+        width: 100%;
+        background: linear-gradient(to top, #fff3e3 0% 30%, #faebd7 30% 100%);
+    }
+
+    #img_sacola_vazia {
+        width: 95vw;
+        max-width: 500px;
+        min-width: 0px;  
+        height: 570px;
+        content: url("/static/imagem_sacola_vazia_mobile.png");
+    }
+
+    #div_btns_compra {
+        height: 200px;
+        background-color: #faebd7;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+    
+    #btn_comprar {
+        font-size: 30px;
+        padding-top: 3px;
+        padding-bottom: 6px;
+    }
+
+    #btn_continuar_comprando {
+        font-size: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .btn {
+        border-radius: 100px;
+    }
+
+    #frase_desktop {
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .input_frete {
+        width: 150px;
+    }
+
+    #soma_produtos_valores * {
+        font-size: 12px;
+    }
+
+    #soma_produtos_texto * {
+        font-size: 12px;
+    }
+
+    #valor_da_compra {
+        height: 195px;
+        box-shadow: 5px 0 antiquewhite, 6px 0 #331f06;
+    }
+
+    #total_compra * {
+        font-size: 32px;
+    }
+
+    #btn_comprar {
+        font-size: 22px;
+    }
+
+    #btn_continuar_comprando {
+        font-size: 14px;
+    }
+
+    .div_input_frete label {
+        font-size: 14px;
+    }
+}
