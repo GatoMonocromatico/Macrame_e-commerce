@@ -11,7 +11,7 @@ const info_bruta_itens_lista = $("#itens_sacola").val()
 const btn_finalizar_compra = $("#btn_comprar")
 
 function redirecionar_para_index() {
-    window.location.href = "http://127.0.0.1:5000/"
+    window.location.href = "/"
 }
 
 function modificar_quantidade(item_index, quantidade_a_modificar, valor_maximo) {

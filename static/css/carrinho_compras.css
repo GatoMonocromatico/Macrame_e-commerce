@@ -14,6 +14,9 @@
 }
 
 form {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     width: 100vw;
     height: 100%;
@@ -399,7 +402,7 @@ body {
 
 .total_compra_texto {
     color: white;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, "Arsenal SC", sans-serif;
     font-size: 44px;
 }
 
