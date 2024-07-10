@@ -115,8 +115,4 @@ function atualiza_valor_espacamento_produtos() {
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
-window.onresize = function () {
-    atualiza_espacamento_produtos()
-    $("body").css("width", screen.width)
-    $("body").css("max-width", screen.width)
-}
+window.onresize = atualiza_espacamento_produtos
