@@ -117,8 +117,6 @@ const sleep = ms => new Promise(r => setTimeout(r, ms))
 
 window.onresize = function () {
     atualiza_espacamento_produtos()
-    $("body").css("height", window.innerHeight)
-    $("body").css("max-height", window.innerHeight)
-    $("body").css("width", window.innerHeight)
-    $("body").css("max-width", window.innerHeight)
+    $("body").css("width", screen.width)
+    $("body").css("max-width", screen.width)
 }
