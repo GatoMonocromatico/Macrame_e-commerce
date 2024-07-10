@@ -15,6 +15,8 @@
 body {
     overflow-x: hidden;
     background-color: #F6EBDB;
+    width: 100vw;
+    height: 100vh;
 }
 
 #cabeçalho {
@@ -215,7 +217,7 @@ form {
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow-x: hidden;
+    overflow-x: visible;
     background-color: transparent;
     margin-left: 0px;
     transition: 200ms;
