@@ -215,7 +215,7 @@ form {
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow-x: visible;
+    overflow-x: hidden;
     background-color: transparent;
     margin-left: 0px;
     transition: 200ms;
